@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="ConverterService"
+    targetNamespace="converter.soap.service"
+    xmlns:tns="converter.soap.service"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+
+    <wsdl:types>
+        <xsd:schema targetNamespace="converter.soap.service">
+            <xsd:element name="ConvertXtoY">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="srcFormat" type="xsd:string"/>
+                        <xsd:element name="dstFormat" type="xsd:string"/>
+                        <xsd:element name="dataIn" type="xsd:base64Binary"/>
+                        <xsd:element name="options" type="xsd:string" minOccurs="0"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="ConvertXtoYResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="dataOut" type="xsd:base64Binary"/>
+                        <xsd:element name="report" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+            <xsd:element name="DetectFormat">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="data" type="xsd:base64Binary"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="DetectFormatResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="format" type="xsd:string"/>
+                        <xsd:element name="metadata" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+            <xsd:element name="ValidateConversion">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="srcFormat" type="xsd:string"/>
+                        <xsd:element name="dstFormat" type="xsd:string"/>
+                        <xsd:element name="dataSrc" type="xsd:base64Binary"/>
+                        <xsd:element name="dataDst" type="xsd:base64Binary"/>
+                        <xsd:element name="criteria" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="ValidateConversionResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="valid" type="xsd:boolean"/>
+                        <xsd:element name="details" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+            <xsd:element name="ListSupportedConversions"><xsd:complexType/></xsd:element>
+            <xsd:element name="ListSupportedConversionsResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="result" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:schema>
+    </wsdl:types>
+
+    <wsdl:message name="ConvertXtoYRequest"><wsdl:part name="parameters" element="tns:ConvertXtoY"/></wsdl:message>
+    <wsdl:message name="ConvertXtoYResponse"><wsdl:part name="parameters" element="tns:ConvertXtoYResponse"/></wsdl:message>
+    <wsdl:message name="DetectFormatRequest"><wsdl:part name="parameters" element="tns:DetectFormat"/></wsdl:message>
+    <wsdl:message name="DetectFormatResponse"><wsdl:part name="parameters" element="tns:DetectFormatResponse"/></wsdl:message>
+    <wsdl:message name="ValidateConversionRequest"><wsdl:part name="parameters" element="tns:ValidateConversion"/></wsdl:message>
+    <wsdl:message name="ValidateConversionResponse"><wsdl:part name="parameters" element="tns:ValidateConversionResponse"/></wsdl:message>
+    <wsdl:message name="ListSupportedConversionsRequest"><wsdl:part name="parameters" element="tns:ListSupportedConversions"/></wsdl:message>
+    <wsdl:message name="ListSupportedConversionsResponse"><wsdl:part name="parameters" element="tns:ListSupportedConversionsResponse"/></wsdl:message>
+
+    <wsdl:portType name="ConverterPortType">
+        <wsdl:operation name="ConvertXtoY">
+            <wsdl:input message="tns:ConvertXtoYRequest"/>
+            <wsdl:output message="tns:ConvertXtoYResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="DetectFormat">
+            <wsdl:input message="tns:DetectFormatRequest"/>
+            <wsdl:output message="tns:DetectFormatResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="ValidateConversion">
+            <wsdl:input message="tns:ValidateConversionRequest"/>
+            <wsdl:output message="tns:ValidateConversionResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="ListSupportedConversions">
+            <wsdl:input message="tns:ListSupportedConversionsRequest"/>
+            <wsdl:output message="tns:ListSupportedConversionsResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+
+    <wsdl:binding name="ConverterBinding" type="tns:ConverterPortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="ConvertXtoY">
+            <soap:operation soapAction="ConvertXtoY"/>
+            <wsdl:input><soap:body use="literal"/></wsdl:input>
+            <wsdl:output><soap:body use="literal"/></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="DetectFormat">
+            <soap:operation soapAction="DetectFormat"/>
+            <wsdl:input><soap:body use="literal"/></wsdl:input>
+            <wsdl:output><soap:body use="literal"/></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="ValidateConversion">
+            <soap:operation soapAction="ValidateConversion"/>
+            <wsdl:input><soap:body use="literal"/></wsdl:input>
+            <wsdl:output><soap:body use="literal"/></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="ListSupportedConversions">
+            <soap:operation soapAction="ListSupportedConversions"/>
+            <wsdl:input><soap:body use="literal"/></wsdl:input>
+            <wsdl:output><soap:body use="literal"/></wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+
+    <wsdl:service name="ConverterService">
+        <wsdl:port name="ConverterPort" binding="tns:ConverterBinding">
+            <soap:address location="http://localhost:8000/service"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <server>
+        <host>127.0.0.1</host>
+        <port>8000</port>
+        <timeout>30</timeout>
+    </server>
+    <features>
+        <logging>enabled</logging>
+        <auth>basic</auth>
+    </features>
+</configuration>

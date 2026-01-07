@@ -1,0 +1,3 @@
+To nie jest plik XML.
+To jest zwykły tekst, który ma spowodować błąd w operacji ConvertXtoY.
+{ "json": "też nie zadziała, jeśli serwer spodziewa się XML" }

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<catalog>
+    <book id="1">
+        <author>Jan Kowalski</author>
+        <title>SOAP w Pythonie</title>
+        <price>45.99</price>
+    </book>
+    <book id="2">
+        <author>Anna Nowak</author>
+        <title>Web Services Guide</title>
+        <price>59.00</price>
+    </book>
+</catalog>
